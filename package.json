@@ -1,0 +1,23 @@
+{
+  "name": "jimg",
+  "version": "1.0.0",
+  "description": "javascript image library",
+  "main": "jimg.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.1.0",
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-mocha": "^4.0.1",
+    "gulp-typescript": "^3.1.5",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "typescript": "^2.2.1"
+  }
+}
