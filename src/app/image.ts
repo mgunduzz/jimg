@@ -23,7 +23,7 @@ import {exception} from './exception';
            
 
         };
-        
+                
 
         public width(): number{            
             return this._width;
