@@ -40,7 +40,7 @@ export class streamMemory implements stream{
         if(this._position + count > this._length)
             countOfBytes = this._length - this._position;
  
-        return this._data.subarray(this._position,this._position+countOfBytes);
+        return this._data.slice(this._position,this._position+countOfBytes);
                     
     }
 }
