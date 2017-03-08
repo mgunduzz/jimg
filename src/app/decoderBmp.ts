@@ -1,0 +1,32 @@
+import {image} from './image';
+
+/* bmp flags */
+var BMP_NEW	= 0;
+/** image is opaque (as opposed to having an alpha mask) */
+var BMP_OPAQUE= (1 << 0);
+/** memory should be wiped */
+var BMP_CLEAR_MEMORY = (1 << 1);
+
+
+class  bmp_result {
+    static readonly BMP_OK = 0;
+    static readonly BMP_INSUFFICIENT_MEMORY = 1;
+    static readonly BMP_INSUFFICIENT_DATA = 2;
+    static readonly BMP_DATA_ERROR = 3;
+}
+
+class bmp_encoding {
+      static readonly BMP_ENCODING_RGB = 0;
+      static readonly BMP_ENCODING_RLE8 = 1;
+      static readonly BMP_ENCODING_RLE4 = 2;
+      static readonly BMP_ENCODING_BITFIELDS = 3;
+}
+
+
+export class decoderBmp {
+
+    public static decode(stream: Uint8Array): image {
+
+        return undefined;
+    }
+}

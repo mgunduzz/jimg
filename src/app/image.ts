@@ -1,6 +1,7 @@
 import {limits} from './limits';
 import {i10n} from './i10n';
 import {exception} from './exception';
+
     
     export class image{
         private _width: number;
@@ -20,6 +21,7 @@ import {exception} from './exception';
             if(height <= limits.uint16_MIN || height > limits.uint16_MAX)
             throw new exception(i10n.errImageWidthOrHeightNotValid());
             this._height =  height;
+            
            
 
         };

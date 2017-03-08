@@ -20,7 +20,7 @@ gulp.task('buildsrc', function() {
 
 //watch src files and run buildsrc task
 gulp.task('watchsrc', ['buildsrc'], function() {
-    gulp.watch('src/app/**/*.ts', ['buildsrc']);
+    gulp.watch('./src/app/**/*.ts', ['buildsrc']);
     
 });
 

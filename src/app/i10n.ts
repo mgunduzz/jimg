@@ -14,10 +14,17 @@ export class i10n {
         if(i10n._culture == undefined || i10n._culture == 'en-us')
            return 'image width and height must be between 1-65535';
 
-        return 'image width and height must be between 1-65535';
-        
+        return 'image width and height must be between 1-65535';   
+    }
 
-        
+    public static errUndefinedVariable(): string {
+        return "undefined variable";
+    }
+    public static errStreamCannotSeek(): string {
+        return "stream can not seek";
+    }
+    public static errIndexOutofRange(): string {
+        return "stream can not seek";
     }
 
 }

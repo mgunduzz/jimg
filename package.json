@@ -4,9 +4,12 @@
   "description": "javascript image library",
   "main": "jimg.js",
   "scripts": {
-    "test": "mocha"
+    "build": "gulp buildsrc",
+    "test": "gulp rununittest"
+    
+    
   },
-  "author": "",
+  "author": "hamza kilic",
   "license": "ISC",
   "devDependencies": {
     "browserify": "^14.1.0",
