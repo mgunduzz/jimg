@@ -1,5 +1,5 @@
 
-export class limits{
+export class limits {
     public static readonly uint8_MAX = 255;
     public static readonly uint8_MIN = 0;
     public static readonly int8_MAX = 127;

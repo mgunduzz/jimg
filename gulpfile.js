@@ -31,7 +31,7 @@ function handleError(err) {
 //run unit tests with mocha
 gulp.task('rununittest',['buildsrc'], function() {
     
-    return gulp.src(['src/test/**/*.js'], { read: false })
+    return gulp.src(['src/test/**/*.spec.js'], { read: false })
         .pipe(mocha({ reporter: 'list' }))
         .on('error', handleError);
         
@@ -39,12 +39,12 @@ gulp.task('rununittest',['buildsrc'], function() {
 
 //watch unit js files and run rununittest
 gulp.task('watchtest_unit', ['rununittest'], function() {
-    gulp.watch('src/test/**/*.js', ['rununittest']);
+    gulp.watch('src/test/**/*.spec.js', ['rununittest']);
     
 });
 //watch output image.js for browserify
 gulp.task('watch_output', ['buildsrc'], function() {
-    gulp.watch('build/image.js', ['runbrowserify']);
+   // gulp.watch('build/image.js', ['runbrowserify']);
     
 });
 

@@ -1,5 +1,5 @@
 import {image} from './image';
-import {exception} from './exception';
+
 
 enum PNGColorType
 {

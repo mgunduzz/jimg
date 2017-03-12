@@ -6,12 +6,11 @@
   "scripts": {
     "build": "gulp buildsrc",
     "test": "gulp rununittest"
-    
-    
   },
   "author": "hamza kilic",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^7.0.8",
     "browserify": "^14.1.0",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",

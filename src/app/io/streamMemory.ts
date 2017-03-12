@@ -1,6 +1,5 @@
-import { stream } from './stream';
-import { exception } from './exception';
-import {i10n } from './i10n';
+/*import { stream } from './stream';
+import {callback} from './callback';
 
 export class streamMemory implements stream{
   
@@ -43,4 +42,4 @@ export class streamMemory implements stream{
         return this._data.slice(this._position,this._position+countOfBytes);
                     
     }
-}
+}*/
