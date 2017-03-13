@@ -2,7 +2,7 @@
 import {callback} from './callback';
 
 /**
- * an event class, 
+ * an event class with promise, 
  */
 export class eventEmitter {
     private events: Map<string, eventPublisher>;
@@ -22,26 +22,40 @@ export class eventEmitter {
          }
 
     }
-   
-    protected callEvent(eventName:string,parameters: any): void {
+
+    
+    /**
+     * executes all publishers async
+     * @param eventName name of event
+     * @param parameters call function parameteters
+     * @returns all promises array
+     */
+    protected callEvent(eventName:string,parameters?: any): Array<any> {
          if(this.events.has(eventName))
          {
-             this.events.get(eventName).all(parameters);
+             return this.events.get(eventName).all(parameters);
+            
          }
+         return undefined;
     }
+   
+    
 
     
 }
 
 
 /**
- *  an event publish class
+ *  an event publish class, with promise
+ * @see Promise
  */
 class eventPublisher{
     // function callbacks array
+    private promiseList: Array<any>;
     private functions: callback[];
     constructor(){
         this.functions = [];
+        this.promiseList= new Array<any>();
     }
 
     /**
@@ -62,12 +76,30 @@ class eventPublisher{
          if((index = this.functions.findIndex(item => item === func))>=0)
           this.functions.splice(index,1);
     }
-
+    
     /**
      * executes all functions with parameters
      * @param parameters execute parameters for functions
      */
-    all(parameters:any):void {
-        this.functions.forEach(item=> item.call(parameters));
+    
+    all(parameters?:any): Array<any> {
+      
+        this.promiseList = new Array<any>();
+        this.functions.forEach((item) => {
+            let promise = new Promise((resolve, reject) => {
+                setTimeout(()=> {
+                    
+                  let returnVal = item.call(parameters);
+                   resolve(returnVal);                   
+                }, 1000);
+                 
+            });
+            this.promiseList.push(promise);
+        });
+        return this.promiseList;
+        
+            
     }
+    
+
 }

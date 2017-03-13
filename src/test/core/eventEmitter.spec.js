@@ -11,16 +11,27 @@ class testEventEmitter extends coreeventEmitter.eventEmitter
         super();
         
     }
-    callsomething(){
-        super.callEvent('on');
+   callsomething(thenfunc,done){        
+      var promiseList =super.callEvent('on');     
+      
+     Promise.all(promiseList).then(
+        values=>{
+          thenfunc();
+        }).catch(err=>{ done(err);});
+
+      
+     
+        
     }
     
 }
 
+
+
 describe('eventemiter', function() {
-  it('must call our void function and result must be valid', function() {
+  it('must call our void function and result must be valid', (done) =>{
       var testVariable = 0;
-       function testfunc(){
+       function testfunc(){           
              testVariable += 1;
         }
     //create a callback
@@ -28,16 +39,22 @@ describe('eventemiter', function() {
     var testForEvent = new testEventEmitter();
     //add an event
     testForEvent.addEvent('on',callback);
+    
     //test on event
-    testForEvent.callsomething();
-
-    expect(testVariable).to.equal(1);
+    
+    testForEvent.callsomething(()=>
+    {
+      expect(testVariable).to.equal(1);      
+      done();
+    });
+    
+    
    
   });
 
 
 
-it('add event, call, then remove event, and call again', function() {
+it('add event, call, then remove event, and call again', function(done) {
     var testVariable = 0;
        function testfunc(){
              testVariable += 1;
@@ -48,16 +65,44 @@ it('add event, call, then remove event, and call again', function() {
     //add an event
     testForEvent.addEvent('on',callback);
     //test on event
-    testForEvent.callsomething();
+    testForEvent.callsomething(()=>{
+      expect(testVariable).to.equal(1);
+       testForEvent.removeEvent('on',callback);
+       testForEvent.callsomething(()=>{
+         expect(testVariable).to.equal(1);
+         done();
+       });
     
-    expect(testVariable).to.equal(1);
-    testForEvent.removeEvent('on',callback);
-    testForEvent.callsomething();
-    expect(testVariable).to.equal(1);
+    });
+   
+    
+   
    
   });
 
-it('add event twice', function() {
+/*it('add event twice', function() {
+     var testVariable = 0;
+       function testfunc(){
+             testVariable += 1;
+        }
+    //create a callback
+    var callback = new corecallback.callback(testfunc);
+    var testForEvent = new testEventEmitter();
+    //add an event
+    testForEvent.addEvent('on',callback);
+    //add again the same function
+    testForEvent.addEvent('on',callback);
+    //test on event
+    testForEvent.callsomething(()=>{
+      expect(testVariable).to.equal(2);
+    });
+    
+    
+    
+   
+  });
+
+   /*it('add event twice and call twice', function() {
      var testVariable = 0;
        function testfunc(){
              testVariable += 1;
@@ -71,27 +116,7 @@ it('add event twice', function() {
     testForEvent.addEvent('on',callback);
     //test on event
     testForEvent.callsomething();
-    
-    expect(testVariable).to.equal(2);
-    
-   
-  });
-
-it('add event twice and call twice', function() {
-     var testVariable = 0;
-       function testfunc(){
-             testVariable += 1;
-        }
-    //create a callback
-    var callback = new corecallback.callback(testfunc);
-    var testForEvent = new testEventEmitter();
-    //add an event
-    testForEvent.addEvent('on',callback);
-    //add again the same function
-    testForEvent.addEvent('on',callback);
-    //test on event
-    testForEvent.callsomething();
-    
+    wait();
     expect(testVariable).to.equal(2);
     testForEvent.callsomething();
     expect(testVariable).to.equal(4);
@@ -114,13 +139,13 @@ it('add event twice and call twice', function() {
     testForEvent.addEvent('on',callback);
     //test on event
     testForEvent.callsomething();    
-
+    wait();
     expect(testVariable).to.equal(2);
 
     testForEvent.removeEvent('on',callback);
     //test on event
     testForEvent.callsomething();
-    
+    wait();
     expect(testVariable).to.equal(3);
     
    
@@ -148,19 +173,20 @@ it('add event twice and call twice', function() {
     testForEvent.addEvent('on',callback2);
     //test on event
     testForEvent.callsomething();    
-
+   
     expect(testVariable).to.equal(1);
     expect(testVariable2).to.equal(1);
 
     testForEvent.removeEvent('on',callback);
     //test on event
     testForEvent.callsomething();
-    
+    wait();
     expect(testVariable).to.equal(1);
     expect(testVariable2).to.equal(2);
+
     
    
-  });
+  });*/
 
 
 
