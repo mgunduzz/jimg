@@ -11,7 +11,7 @@ var tsProjectSrc = gulpts.createProject('tsconfig.json');
 //buildsrc ts files with typescript
 gulp.task('buildsrc', function() {
     
-  var tsResult = gulp.src('src/app/**/*.ts')
+  var tsResult = gulp.src('./src/app/**/*.ts')
         .pipe(tsProjectSrc());
     return tsResult.js.pipe( gulp.dest('build/') )
 //    .on('end',function () { gulp.start('rununittest'); });
@@ -31,7 +31,7 @@ function handleError(err) {
 //run unit tests with mocha
 gulp.task('rununittest',['buildsrc'], function() {
     
-    return gulp.src(['src/test/**/*.spec.js'], { read: false })
+    return gulp.src(['./src/test/**/*.spec.js'], { read: false })
         .pipe(mocha({ reporter: 'list' }))
         .on('error', handleError);
         
@@ -39,7 +39,7 @@ gulp.task('rununittest',['buildsrc'], function() {
 
 //watch unit js files and run rununittest
 gulp.task('watchtest_unit', ['rununittest'], function() {
-    gulp.watch('src/test/**/*.spec.js', ['rununittest']);
+    gulp.watch('./src/test/**/*.spec.js', ['rununittest']);
     
 });
 //watch output image.js for browserify

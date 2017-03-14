@@ -87,11 +87,11 @@ class eventPublisher{
         this.promiseList = new Array<any>();
         this.functions.forEach((item) => {
             let promise = new Promise((resolve, reject) => {
-                setTimeout(()=> {
+                //setTimeout(()=> {
                     
                   let returnVal = item.call(parameters);
                    resolve(returnVal);                   
-                }, 1000);
+                //}, 500);
                  
             });
             this.promiseList.push(promise);
